@@ -11,8 +11,12 @@ import (
  */
 
 func AddRecord(c *gin.Context) {
-	userId := c.PostForm("userId")
-	wight := c.PostForm("wight")
+	userId := c.PostForm("userID")
+	weight := c.PostForm("weight")
 	waistline := c.PostForm("waistline")
-	c.JSON(http.StatusOK, common.NewResponse(userId+wight+waistline))
+	c.JSON(http.StatusOK, common.NewResponse(userId+weight+waistline))
+}
+
+func GetAllRecords(c *gin.Context)  {
+	c.JSON(http.StatusOK, common.NewResponse("haha"))
 }

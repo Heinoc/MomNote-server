@@ -22,6 +22,7 @@ func InitRouter() *gin.Engine {
 
 	api := r.Group("api")
 	{
+		api.GET("getAllRecords", controllers.GetAllRecords)
 		api.POST("addRecord", controllers.AddRecord)
 	}
 
