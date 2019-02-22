@@ -22,8 +22,18 @@ func InitRouter() *gin.Engine {
 
 	api := r.Group("api")
 	{
-		api.GET("getAllRecords", controllers.GetAllRecords)
-		api.POST("addRecord", controllers.AddRecord)
+		user := api.Group("user")
+		{
+			user.POST("register", controllers.RegisterUser)
+			user.POST("login", controllers.Login)
+		}
+
+		record := api.Group("record")
+		{
+			record.GET("getRecords", controllers.GetRecords)
+			record.POST("addRecord", controllers.AddRecord)
+		}
+
 	}
 
 	return r

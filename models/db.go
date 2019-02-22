@@ -3,6 +3,7 @@ package models
 import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"log"
 	"sync"
 )
 
@@ -17,22 +18,23 @@ var once sync.Once
 单例，获取数据库对象
  */
 func DBUtil() *gorm.DB {
-	//once.Do(func() {
-	//	d, err := gorm.Open("mysql", "root:geniusheinoc@tcp(149.28.134.89:33006)/copywriting?charset=utf8&parseTime=True&loc=Local")
-	//
-	//	if err != nil {
-	//		log.Fatal(err)
-	//	}
-	//	db = d
-	//
-	//	/**
-	//	model 注册
-	//	 */
-	//	db.AutoMigrate(
-	//		&models.Record{},
-	//	)
-	//
-	//})
+	once.Do(func() {
+		d, err := gorm.Open("mysql", "root:123456@tcp(127.0.0.1:23306)/mom_note?charset=utf8&parseTime=True&loc=Local")
+
+		if err != nil {
+			log.Fatal(err)
+		}
+		db = d
+
+		/**
+		model 注册
+		 */
+		db.AutoMigrate(
+			&User{},
+			&Record{},
+		)
+
+	})
 
 	return db
 }
