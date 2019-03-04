@@ -13,23 +13,27 @@ import (
  */
 
 type GetAllRecordsResponse struct {
-	TotalPages int64 `json:"totalPages"`
-	PageNum int64 `json:"pageNum"`
-	PageSize int64 `json:"pageSize"`
-	List []models.Record `json:"list"`
+	TotalPages int64           `json:"totalPages"`
+	PageNum    int64           `json:"pageNum"`
+	PageSize   int64           `json:"pageSize"`
+	List       []models.Record `json:"list"`
 }
 
 func AddRecord(c *gin.Context) {
 	userId := c.PostForm("userID")
 	weight := c.PostForm("weight")
+	armline := c.PostForm("armline")
 	waistline := c.PostForm("waistline")
+	bust := c.PostForm("bust")
 	hipline := c.PostForm("hipline")
 	thighline := c.PostForm("thighline")
 
 	var record = new(models.Record)
 	record.UserId = userId
 	record.Weight = weight
+	record.Armline = armline
 	record.Waistline = waistline
+	record.Bust = bust
 	record.Hipline = hipline
 	record.Thighline = thighline
 
@@ -42,7 +46,7 @@ func AddRecord(c *gin.Context) {
 	c.JSON(http.StatusOK, common.NewResponse(""))
 }
 
-func GetRecords(c *gin.Context)  {
+func GetRecords(c *gin.Context) {
 
 	userId := c.DefaultQuery("userID", "")
 	pageNumStr := c.DefaultQuery("pageNum", "1")
@@ -58,15 +62,12 @@ func GetRecords(c *gin.Context)  {
 	}
 
 	var response = &GetAllRecordsResponse{
-		TotalPages:totalPages,
-		PageNum:pageNum,
-		PageSize:pageSize,
-		List:list,
+		TotalPages: totalPages,
+		PageNum:    pageNum,
+		PageSize:   pageSize,
+		List:       list,
 	}
 
 	c.JSON(http.StatusOK, common.NewResponse(response))
-
-
-
 
 }

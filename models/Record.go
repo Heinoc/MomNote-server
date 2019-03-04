@@ -10,18 +10,22 @@ import (
  */
 
 type Record struct {
-	ID        uint `gorm:"primary_key" json:"-" form:"id" binding:""`
-	CreatedAt time.Time `json:"createdTime"`
-	UpdatedAt time.Time `json:"-"`
+	ID        uint       `gorm:"primary_key" json:"-" form:"id" binding:""`
+	CreatedAt time.Time  `json:"createdTime"`
+	UpdatedAt time.Time  `json:"-"`
 	DeletedAt *time.Time `sql:"index" json:"-"`
 
-	User User `json:"-"`
+	User   User   `json:"-"`
 	UserId string `json:"userId"`
 
 	//体重
 	Weight string `json:"weight"`
+	//臂围
+	Armline string `json:"armline"`
 	//腰围
 	Waistline string `json:"waistline"`
+	//胸围
+	Bust string `json:"bust"`
 	//臀围
 	Hipline string `json:"hipline"`
 	//大腿围
@@ -48,7 +52,6 @@ func FindAllRecords(userId string, pageNum, pageSize int64) (totalPages int64, l
 			Limit(pageSize).
 			Find(&list).
 			Error
-
 
 	} else {
 		err = DBUtil().Order("id desc").Where("user_id = ?", userId).Find(&list).Error
