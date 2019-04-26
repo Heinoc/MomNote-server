@@ -1,10 +1,11 @@
 package controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"mom-note-server/common"
 	"mom-note-server/models"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 /**
@@ -18,8 +19,8 @@ func RegisterUser(c *gin.Context) {
 	password := c.PostForm("password")
 
 	var user = &models.User{
-		Phone:phone,
-		Password:password,
+		Phone:    phone,
+		Password: password,
 	}
 
 	err := user.Inser()
