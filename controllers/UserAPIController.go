@@ -1,10 +1,11 @@
 package controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"mom-note-server/common"
 	"mom-note-server/models"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 /**

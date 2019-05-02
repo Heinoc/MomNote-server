@@ -11,9 +11,11 @@ import (
 
 type Record struct {
 	ID        uint       `gorm:"primary_key" json:"-" form:"id" binding:""`
-	CreatedAt time.Time  `json:"createdTime"`
+	CreatedAt time.Time  `json:"-"`
 	UpdatedAt time.Time  `json:"-"`
 	DeletedAt *time.Time `sql:"index" json:"-"`
+
+	CreatedAtString string `gorm:"-" json:"createdTime"`
 
 	User   User   `json:"-"`
 	UserId string `json:"userId"`
@@ -55,6 +57,11 @@ func FindAllRecords(userId string, pageNum, pageSize int64) (totalPages int64, l
 
 	} else {
 		err = DBUtil().Order("id desc").Where("user_id = ?", userId).Find(&list).Error
+	}
+
+	for index, _ := range list {
+		list[index].CreatedAtString = list[index].CreatedAt.Format("2006-01-02")
+
 	}
 
 	return
