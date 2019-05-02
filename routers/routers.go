@@ -1,15 +1,13 @@
 package routers
 
-
 import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"mom-note-server/controllers"
 )
 
-
 /**
- * author: chenshuai09
+ * author: heinoc
  */
 
 func InitRouter() *gin.Engine {

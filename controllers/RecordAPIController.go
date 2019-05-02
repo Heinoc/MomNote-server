@@ -9,7 +9,7 @@ import (
 )
 
 /**
- * author: chenshuai09
+ * author: heinoc
  */
 
 type GetAllRecordsResponse struct {

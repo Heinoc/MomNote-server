@@ -8,7 +8,7 @@ import (
 )
 
 /**
- * author: chenshuai09
+ * author: heinoc
  * created on: 2019-02-12
  */
 
@@ -18,8 +18,8 @@ func RegisterUser(c *gin.Context) {
 	password := c.PostForm("password")
 
 	var user = &models.User{
-		Phone:phone,
-		Password:password,
+		Phone:    phone,
+		Password: password,
 	}
 
 	err := user.Inser()
