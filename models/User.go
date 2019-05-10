@@ -8,23 +8,21 @@ import (
 )
 
 /**
- * author: chenshuai09
+ * author: heinoc
  * created on: 2019-02-12
  */
 
 type User struct {
 	ID        uint `gorm:"primary_key" json:"-" form:"id" binding:""`
 	CreatedAt time.Time
-	UpdatedAt time.Time `json:"-"`
+	UpdatedAt time.Time  `json:"-"`
 	DeletedAt *time.Time `sql:"index" json:"-"`
 
-	UserId string `json:"userId"`
-	UserName string `json:"userName"`
-	Phone string `json:"phone"`
-	Password string `json:"-"`
+	UserId   string     `json:"userId"`
+	UserName string     `json:"userName"`
+	Phone    string     `json:"phone"`
+	Password string     `json:"-"`
 	BirthDay *time.Time `json:"birthDay"`
-
-
 }
 
 func (c *User) Inser() error {

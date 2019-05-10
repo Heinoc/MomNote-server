@@ -6,7 +6,7 @@ import (
 )
 
 /**
- * author: chenshuai09
+ * author: heinoc
  */
 
 type Record struct {

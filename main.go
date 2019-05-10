@@ -1,9 +1,9 @@
 package main
 
 import (
-	"mom-note-server/routers"
 	"context"
 	"log"
+	"mom-note-server/routers"
 	"net/http"
 	"os"
 	"os/signal"
@@ -11,7 +11,7 @@ import (
 )
 
 /**
- * author: chenshuai09
+ * author: heinoc
  */
 
 func main() {
