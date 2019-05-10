@@ -1,12 +1,10 @@
 package routers
 
-
 import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"mom-note-server/controllers"
 )
-
 
 /**
  * author: chenshuai09
@@ -30,6 +28,7 @@ func InitRouter() *gin.Engine {
 
 		record := api.Group("record")
 		{
+			record.POST("mockPastRecord", controllers.MockPastRecord)
 			record.GET("getRecords", controllers.GetRecords)
 			record.POST("addRecord", controllers.AddRecord)
 		}

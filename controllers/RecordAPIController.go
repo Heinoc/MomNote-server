@@ -6,6 +6,7 @@ import (
 	"mom-note-server/models"
 	"net/http"
 	"strconv"
+	"time"
 )
 
 /**
@@ -17,6 +18,42 @@ type GetAllRecordsResponse struct {
 	PageNum    int64           `json:"pageNum"`
 	PageSize   int64           `json:"pageSize"`
 	List       []models.Record `json:"list"`
+}
+
+func MockPastRecord(c *gin.Context) {
+	userId := c.PostForm("userID")
+	startDate := c.PostForm("startDate")
+
+	startTime, err := time.Parse("2006-01-02", startDate)
+
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, common.NewErrorResponse(err.Error()))
+		return
+	}
+
+	nowTime := time.Now()
+
+	for startTime.Before(nowTime) {
+
+		var record = new(models.Record)
+		record.UserId = userId
+
+		record.CreatedAt = startTime
+		record.UpdatedAt = startTime
+
+		err = record.Insert()
+
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, common.NewErrorResponse(err.Error()))
+			return
+		}
+
+		startTime = startTime.AddDate(0, 0, 1)
+
+	}
+
+	c.JSON(http.StatusOK, common.NewResponse(""))
+
 }
 
 func AddRecord(c *gin.Context) {
