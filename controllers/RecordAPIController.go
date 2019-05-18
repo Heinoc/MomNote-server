@@ -41,6 +41,14 @@ func MockPastRecord(c *gin.Context) {
 		record.CreatedAt = startTime
 		record.UpdatedAt = startTime
 
+		// default value
+		record.Weight = "50"
+		record.Armline = "23"
+		record.Waistline = "61"
+		record.Bust = "84"
+		record.Hipline = "85"
+		record.Thighline = "45"
+
 		err = record.Insert()
 
 		if err != nil {
